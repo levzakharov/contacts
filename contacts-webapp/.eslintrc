@@ -1,0 +1,66 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    }
+  },
+  "plugins": ["react"],
+  "rules": {
+    "indent": ["warn", 4, {"SwitchCase": 1}],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "jsx-quotes": ["error", "prefer-double"],
+
+    //"no-console": ["warn"],
+    "no-console": ["off"],
+
+    "prefer-const": ["warn"],
+    "no-const-assign": ["error"],
+    "no-var": ["warn"],
+
+    "no-new-object": ["warn"],
+    "object-shorthand": ["warn"],
+    "quote-props": ["warn", "as-needed"],
+
+    "no-array-constructor": ["warn"],
+    "array-callback-return": ["warn"],
+
+    "prefer-template": ["warn"],
+    "template-curly-spacing": ["warn"],
+    "no-useless-escape": ["warn"],
+
+    "react/display-name": "error",
+    "react/jsx-no-duplicate-props": "error",
+    "react/jsx-no-undef": "error",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "react/no-danger": "error",
+    "react/no-deprecated": "error",
+    "react/no-did-mount-set-state": ["error"],
+    "react/no-did-update-set-state": ["error"],
+    "react/no-direct-mutation-state": "error",
+    "react/no-is-mounted": "error",
+    "react/no-unknown-property": "error",
+    "react/prop-types": "warn",
+    "react/react-in-jsx-scope": "error",
+
+    "react/prefer-es6-class": ["error", "always"],
+    "react/prefer-stateless-function": "warn",
+    "react/jsx-pascal-case": "error",
+    "react/jsx-curly-spacing": ["error", "never"],
+    "react/jsx-boolean-value": ["error", "never"],
+    "react/jsx-wrap-multilines": "error"
+  }
+}
