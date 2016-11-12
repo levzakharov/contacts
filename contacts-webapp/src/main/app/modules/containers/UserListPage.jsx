@@ -17,9 +17,9 @@ class UserListPage extends React.Component {
         // TODO: call fetch to load the list of users and set state.users
         this.setState({
             users: [
-                {name: 'marat', displayName: 'Марат Гизатуллин'},
-                {name: 'alexander', displayName: 'Александр Комаров'},
-                {name: 'sergey', displayName: 'Сергей Миронов'}
+                {name: 'marat', fullName: 'Марат Гизатуллин'},
+                {name: 'alexander', fullName: 'Александр Комаров'},
+                {name: 'sergey', fullName: 'Сергей Миронов'}
             ],
             usersLoaded: true
         });

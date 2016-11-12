@@ -1,14 +1,16 @@
 import React from 'react';
 
 const propTypes = {
-    children: React.PropTypes.node.isRequired
+    form: React.PropTypes.node.isRequired,
+    list: React.PropTypes.node.isRequired
 };
 
-const Users = ({children}) => (
+const Users = ({list, form}) => (
     <div>
         <h2>Users</h2>
 
-        {children}
+        {form}
+        {list}
     </div>
 );
 

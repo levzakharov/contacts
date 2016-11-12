@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 const propTypes = {
     users: React.PropTypes.arrayOf(React.PropTypes.shape({
         name: React.PropTypes.string.isRequired,
-        displayName: React.PropTypes.string.isRequired
+        fullName: React.PropTypes.string.isRequired
     })).isRequired
 };
 
@@ -12,16 +12,16 @@ const UsersList = ({users}) => (
     <table className="table">
         <thead>
         <tr>
-            <th>Имя</th>
-            <th>Полное имя</th>
+            <th>Name</th>
+            <th>Full Name</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        {users.map(({name, displayName}) => (
+        {users.map(({name, fullName}) => (
             <tr key={name}>
                 <td>{name}</td>
-                <td>{displayName}</td>
+                <td>{fullName}</td>
                 <td>
                     <div className="btn-group" role="group">
                         <Link className="btn btn-primary btn-xs"
