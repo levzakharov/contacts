@@ -1,9 +1,15 @@
 import React from 'react';
-import {Route} from 'react-router';
+import {Route, IndexRoute, IndexRedirect} from 'react-router';
 
 import App from './containers/App';
 
 export default (
     <Route path="/" component={App}>
+        <IndexRedirect to="/users"/>
+        <Route path="/users">
+            <IndexRoute component={App}/>
+        </Route>
+        <Route path="registration" component={App}/>
+        <Route path="login" component={App}/>
     </Route>
 );
