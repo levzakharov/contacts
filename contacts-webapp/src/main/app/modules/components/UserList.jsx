@@ -28,6 +28,9 @@ const UsersList = ({users}) => (
                               to={`/users/view/${encodeURIComponent(name)}`}>
                             <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
                         </Link>
+                        <button className="btn btn-warning btn-xs" type="button">
+                            <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </button>
                         <button className="btn btn-danger btn-xs" type="button">
                             <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
