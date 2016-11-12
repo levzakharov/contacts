@@ -8,10 +8,8 @@ const RegistrationForm = () => {
             <form onSubmit={() => {
                 alert('Submit!');
             }}>
-                <FormGroup id="email" label="Email" type="email" className="form-control"
-                           placeholder="Email"/>
-                <FormGroup id="password" label="Password" type="password" className="form-control"
-                           placeholder="Password"/>
+                <FormGroup id="email" label="Email" type="email" placeholder="Email"/>
+                <FormGroup id="password" label="Password" type="password" placeholder="Password"/>
 
                 <button type="submit" className="btn btn-primary">Sign Up</button>
             </form>
