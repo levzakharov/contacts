@@ -4,7 +4,8 @@ const propTypes = {
     id: React.PropTypes.string.isRequired,
     label: React.PropTypes.string,
     type: React.PropTypes.string,
-    placeholder: React.PropTypes.string
+    placeholder: React.PropTypes.string,
+    value: React.PropTypes.string
 };
 
 class FormGroup extends React.Component {
@@ -20,12 +21,13 @@ class FormGroup extends React.Component {
     }
 
     render() {
-        const {id, label, type, placeholder} = this.props;
+        const {id, label, type, placeholder, value} = this.props;
 
         return (
             <div className="form-group">
                 {label && <label htmlFor={id}>{label}</label>}
-                <input onChange={this.handleChange} type={type || 'text'} className="form-control" id={id} placeholder={placeholder}/>
+                <input onChange={this.handleChange} type={type || 'text'} className="form-control" id={id}
+                       placeholder={placeholder} value={value}/>
             </div>
         );
     }

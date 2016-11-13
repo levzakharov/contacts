@@ -2,7 +2,7 @@ import React from 'react';
 
 import UserList from '../components/UserList';
 import ModalWrapper from '../components/common/ModalWrapper';
-import UserCreateForm from '../components/UserCreateForm';
+import UserForm from '../components/UserForm';
 
 const propTypes = {};
 
@@ -48,7 +48,7 @@ class UserListPage extends React.Component {
                 <button onClick={this.openUserCreateForm} className="btn btn-success">Create User</button>
                 <ModalWrapper title="Create User" isVisible={isUserCreateFormVisible}
                               onClose={this.closeUserCreateForm}>
-                    <UserCreateForm/>
+                    <UserForm/>
                 </ModalWrapper>
                 <UserList users={users}/>
             </div>
