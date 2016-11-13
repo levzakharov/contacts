@@ -1,6 +1,9 @@
 import React from 'react';
 import UserList from '../components/UserList';
 
+// FIXME
+import ModalWrapper from '../components/common/ModalWrapper';
+
 const propTypes = {};
 
 class UserListPage extends React.Component {
@@ -29,6 +32,9 @@ class UserListPage extends React.Component {
         const {users} = this.state;
         return (
             <div>
+                <ModalWrapper title="Title">
+                    <p>Hi!</p>
+                </ModalWrapper>
                 <UserList users={users}/>
             </div>
         );
