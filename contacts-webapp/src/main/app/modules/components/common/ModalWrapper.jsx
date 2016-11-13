@@ -2,7 +2,6 @@ import React from 'react';
 
 const propTypes = {
     isVisible: React.PropTypes.bool.isRequired,
-    onOpen: React.PropTypes.func.isRequired,
     onClose: React.PropTypes.func.isRequired,
     title: React.PropTypes.string.isRequired,
     children: React.PropTypes.node.isRequired
@@ -12,12 +11,7 @@ class ModalWrapper extends React.Component {
     constructor(props) {
         super(props);
 
-        this.open = this.open.bind(this);
         this.close = this.close.bind(this);
-    }
-
-    open() {
-        this.props.onOpen();
     }
 
     close() {
