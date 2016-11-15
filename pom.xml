@@ -18,24 +18,13 @@
     </parent>
 
     <modules>
-        <!--module>rt-rest</module>
-        <module>rt-web</module-->
+        <module>contacts-rest</module>
+        <module>contacts-webapp</module>
     </modules>
 
     <properties>
         <java.version>1.8</java.version>
     </properties>
-
-    <dependencyManagement>
-        <dependencies>
-
-            <dependency>
-                <groupId>org.postgresql</groupId>
-                <artifactId>postgresql</artifactId>
-                <version>9.4.1209.jre7</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
 
     <build>
         <pluginManagement>
