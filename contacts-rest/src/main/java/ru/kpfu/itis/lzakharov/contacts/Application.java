@@ -1,4 +1,4 @@
-package ru.kpfu.itis.lzakharov.contacts.rest;
+package ru.kpfu.itis.lzakharov.contacts;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
