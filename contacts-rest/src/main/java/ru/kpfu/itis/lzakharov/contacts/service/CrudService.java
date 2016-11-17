@@ -1,1 +1,1 @@
-package ru.kpfu.itis.lzakharov.contacts.service;import ru.kpfu.itis.lzakharov.contacts.model.User;import java.util.List;interface CrudService<T> {    List<T> findAll();    T find(String login);    T create(User user);    T update(User user);    void delete(String login);}
+package ru.kpfu.itis.lzakharov.contacts.service;import ru.kpfu.itis.lzakharov.contacts.model.User;import java.util.List;interface CrudService<T, ID> {    List<T> findAll();    T find(ID id);    T create(T obj);    T update(T obj);    void delete(ID id);}

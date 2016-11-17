@@ -1,1 +1,1 @@
-package ru.kpfu.itis.lzakharov.contacts.service;import ru.kpfu.itis.lzakharov.contacts.model.User;public interface UserService extends CrudService<User> {    boolean isUserExist(User user);}
+package ru.kpfu.itis.lzakharov.contacts.service;import ru.kpfu.itis.lzakharov.contacts.model.User;public interface UserService extends CrudService<User, String> {    boolean isUserExist(User user);}
