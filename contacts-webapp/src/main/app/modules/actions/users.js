@@ -42,3 +42,46 @@ export const getUsers = () => {
             }).catch(err => console.log('Error: ', err));
     };
 };
+
+export const GET_USER_REQUEST = 'GET_USER_REQUEST';
+export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
+export const GET_USER_FAILURE = 'GET_USER_FAILURE';
+
+const requestUser = () => {
+    return {
+        type: GET_USER_REQUEST
+    };
+};
+
+function receiveUser(user) {
+    return {
+        type: GET_USER_SUCCESS,
+        user
+    };
+}
+
+function userError() {
+    return {
+        type: GET_USER_FAILURE
+    };
+}
+
+export const getUser = (login) => {
+    const init = {
+        method: 'GET'
+    };
+
+    return dispatch => {
+        dispatch(requestUser());
+
+        return fetch(`${config.serverUrl}/api/users/${login}`, init)
+            .then(response => response.json().then(user => ({user, response})))
+            .then(({user, response}) => {
+                if (response.ok) {
+                    dispatch(receiveUser(user));
+                } else {
+                    dispatch(userError());
+                }
+            }).catch(err => console.log('Error: ', err));
+    };
+};

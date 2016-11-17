@@ -13,7 +13,7 @@ export default (
         <IndexRedirect to="/users"/>
         <Route path="/users" component={Users}>
             <IndexRoute component={UserListPage}/>
-            <Route path="view/:name" component={UserViewPage}/>
+            <Route path="view/:login" component={UserViewPage}/>
         </Route>
         <Route path="registration" component={RegistrationPage}/>
         <Route path="login" component={LoginPage}/>
