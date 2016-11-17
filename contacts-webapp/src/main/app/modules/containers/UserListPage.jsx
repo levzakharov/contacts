@@ -11,7 +11,8 @@ const propTypes = {
         error: React.PropTypes.bool.isRequired,
         users: React.PropTypes.arrayOf(React.PropTypes.shape({
             login: React.PropTypes.string.isRequired,
-            fullName: React.PropTypes.string.isRequired
+            fullName: React.PropTypes.string.isRequired,
+            address: React.PropTypes.string.isRequired
         })).isRequired,
     }),
     createUser: React.PropTypes.func.isRequired,
@@ -52,7 +53,7 @@ class UserListPage extends React.Component {
 
     render() {
         const {isUserCreateFormVisible} = this.state;
-        const {isFetching, error, users} = this.props.usersReducer;
+        const {error, users} = this.props.usersReducer;
 
         return (
             <div>

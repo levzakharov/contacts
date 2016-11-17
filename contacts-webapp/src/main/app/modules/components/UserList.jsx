@@ -15,14 +15,16 @@ const UsersList = ({users, deleteUser}) => (
         <tr>
             <th>Login</th>
             <th>Full Name</th>
+            <th>Address</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        {users.map(({login, fullName}) => (
+        {users.map(({login, fullName, address}) => (
             <tr key={login}>
                 <td>{login}</td>
                 <td>{fullName}</td>
+                <td>{address}</td>
                 <td>
                     <div className="btn-group" role="group">
                         <Link className="btn btn-primary btn-xs"

@@ -11,11 +11,13 @@ class UserForm extends React.Component {
         super(props);
         this.state = {
             login: '',
-            fullName: ''
+            fullName: '',
+            address: ''
         };
 
         this.handleLoginChange = this.handleLoginChange.bind(this);
         this.handleFullNameChange = this.handleFullNameChange.bind(this);
+        this.handleAddressChange = this.handleAddressChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
     }
 
@@ -27,10 +29,14 @@ class UserForm extends React.Component {
         this.setState({fullName});
     }
 
+    handleAddressChange(address) {
+        this.setState({address});
+    }
+
     onSubmit(e) {
         e.preventDefault();
-        const {login, fullName} = this.state;
-        this.props.createUser({login, fullName});
+        const {login, fullName, address} = this.state;
+        this.props.createUser({login, fullName, address});
     }
 
     render() {
@@ -38,6 +44,7 @@ class UserForm extends React.Component {
             <form className onSubmit={this.onSubmit}>
                 <FormGroup id="login" type="text" placeholder="Login" handleChange={this.handleLoginChange}/>
                 <FormGroup id="fullName" type="text" placeholder="Full Name" handleChange={this.handleFullNameChange}/>
+                <FormGroup id="address" type="text" placeholder="Address" handleChange={this.handleAddressChange}/>
 
                 <button type="submit" className="btn btn-primary">Create</button>
             </form>
