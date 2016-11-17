@@ -17,14 +17,6 @@
         <version>1.4.1.RELEASE</version>
     </parent>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-
-        <jwt.version>0.7.0</jwt.version>
-    </properties>
-
     <modules>
         <module>contacts-rest</module>
         <module>contacts-webapp</module>
@@ -47,7 +39,7 @@
             <dependency>
                 <groupId>io.jsonwebtoken</groupId>
                 <artifactId>jjwt</artifactId>
-                <version>${jwt.version}</version>
+                <version>0.7.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
