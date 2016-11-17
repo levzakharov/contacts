@@ -5,10 +5,11 @@ const propTypes = {
     users: React.PropTypes.arrayOf(React.PropTypes.shape({
         login: React.PropTypes.string.isRequired,
         fullName: React.PropTypes.string.isRequired
-    })).isRequired
+    })).isRequired,
+    deleteUser: React.PropTypes.func.isRequired
 };
 
-const UsersList = ({users}) => (
+const UsersList = ({users, deleteUser}) => (
     <table className="table">
         <thead>
         <tr>
@@ -31,7 +32,7 @@ const UsersList = ({users}) => (
                         <button className="btn btn-warning btn-xs" type="button">
                             <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                         </button>
-                        <button className="btn btn-danger btn-xs" type="button">
+                        <button onClick={() => deleteUser(login)} className="btn btn-danger btn-xs" type="button">
                             <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
                     </div>

@@ -85,3 +85,28 @@ export const getUser = (login) => {
             }).catch(err => console.log('Error: ', err));
     };
 };
+
+export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
+
+const requestDeleteUser = (login) => {
+    return {
+        type: DELETE_USER_SUCCESS,
+        login
+    };
+};
+
+export const deleteUser = (login) => {
+    const init = {
+        method: 'DELETE'
+    };
+
+    return dispatch => {
+
+        return fetch(`${config.serverUrl}/api/users/${login}`, init)
+            .then(response => {
+                if (response.ok) {
+                    dispatch(requestDeleteUser(login));
+                }
+            }).catch(err => console.log('Error: ', err));
+    };
+};

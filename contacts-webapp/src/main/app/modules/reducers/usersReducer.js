@@ -1,6 +1,7 @@
 import {
     GET_USERS_REQUEST, GET_USERS_SUCCESS, GET_USERS_FAILURE,
-    GET_USER_REQUEST, GET_USER_SUCCESS, GET_USER_FAILURE
+    GET_USER_REQUEST, GET_USER_SUCCESS, GET_USER_FAILURE,
+    DELETE_USER_SUCCESS
 } from '../actions/users';
 
 const initialState = () => {
@@ -52,6 +53,12 @@ const usersReducer = (state = initialState(), action) => {
                 ...state,
                 isFetching: false,
                 error: true
+            };
+
+        case (DELETE_USER_SUCCESS):
+            return {
+                ...state,
+                users: state.users.filter(user => user.login != action.login)
             };
         default:
             return state;

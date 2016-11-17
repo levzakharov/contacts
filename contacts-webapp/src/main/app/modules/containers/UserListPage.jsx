@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getUsers} from '../actions/users';
+import {getUsers, deleteUser} from '../actions/users';
 import UserList from '../components/UserList';
 import ModalWrapper from '../components/common/ModalWrapper';
 import UserForm from '../components/UserForm';
@@ -14,7 +14,8 @@ const propTypes = {
             fullName: React.PropTypes.string.isRequired
         })).isRequired,
     }),
-    getUsers: React.PropTypes.func.isRequired
+    getUsers: React.PropTypes.func.isRequired,
+    deleteUser: React.PropTypes.func.isRequired
 };
 
 class UserListPage extends React.Component {
@@ -33,7 +34,7 @@ class UserListPage extends React.Component {
 
     componentDidMount() {
         this.props.getUsers();
-        this.interval = setInterval(this.props.getUsers, 2000);
+        this.interval = setInterval(this.props.getUsers, 200000);
     }
 
     componentWillUnmount() {
@@ -61,7 +62,7 @@ class UserListPage extends React.Component {
                               onClose={this.closeUserCreateForm}>
                     <UserForm/>
                 </ModalWrapper>
-                <UserList users={users}/>
+                <UserList users={users} deleteUser={this.props.deleteUser}/>
             </div>
         );
     }
@@ -77,4 +78,4 @@ function mapStateToProps(state) {
 
 UserListPage.propTypes = propTypes;
 
-export default connect(mapStateToProps, {getUsers})(UserListPage);
+export default connect(mapStateToProps, {getUsers, deleteUser})(UserListPage);
