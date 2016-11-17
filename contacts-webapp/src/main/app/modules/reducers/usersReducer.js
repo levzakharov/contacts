@@ -1,5 +1,6 @@
 import {
     GET_USERS_REQUEST, GET_USERS_SUCCESS, GET_USERS_FAILURE,
+    CREATE_USER_SUCCESS,
     GET_USER_REQUEST, GET_USER_SUCCESS, GET_USER_FAILURE,
     DELETE_USER_SUCCESS
 } from '../actions/users';
@@ -9,7 +10,8 @@ const initialState = () => {
         isFetching: false,
         error: false,
         users: [],
-        user: {}
+        user: {},
+        newUser: {}
     };
 };
 
@@ -33,6 +35,12 @@ const usersReducer = (state = initialState(), action) => {
                 ...state,
                 isFetching: false,
                 error: true
+            };
+
+        case CREATE_USER_SUCCESS:
+            return {
+                ...state,
+                users: [...state.users, action.newUser]
             };
 
         case GET_USER_REQUEST:

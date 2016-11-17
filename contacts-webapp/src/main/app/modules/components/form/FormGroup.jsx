@@ -5,29 +5,30 @@ const propTypes = {
     label: React.PropTypes.string,
     type: React.PropTypes.string,
     placeholder: React.PropTypes.string,
-    value: React.PropTypes.string
+    value: React.PropTypes.string,
+    isDisabled: React.PropTypes.bool,
+    handleChange: React.PropTypes.func.isRequired
 };
 
 class FormGroup extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
 
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(event) {
-        this.setState({value: event.target.value});
+        this.props.handleChange(event.target.value);
     }
 
     render() {
-        const {id, label, type, placeholder, value} = this.props;
+        const {id, label, type, placeholder, isDisabled} = this.props;
 
         return (
             <div className="form-group">
                 {label && <label htmlFor={id}>{label}</label>}
                 <input onChange={this.handleChange} type={type || 'text'} className="form-control" id={id}
-                       placeholder={placeholder} value={value}/>
+                       placeholder={placeholder} value={this.props.value} disabled={isDisabled}/>
             </div>
         );
     }

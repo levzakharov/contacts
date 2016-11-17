@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getUsers, deleteUser} from '../actions/users';
+import {createUser, getUsers, deleteUser} from '../actions/users';
 import UserList from '../components/UserList';
 import ModalWrapper from '../components/common/ModalWrapper';
 import UserForm from '../components/UserForm';
@@ -14,6 +14,7 @@ const propTypes = {
             fullName: React.PropTypes.string.isRequired
         })).isRequired,
     }),
+    createUser: React.PropTypes.func.isRequired,
     getUsers: React.PropTypes.func.isRequired,
     deleteUser: React.PropTypes.func.isRequired
 };
@@ -25,7 +26,7 @@ class UserListPage extends React.Component {
         this.state = {
             users: [],
             usersLoaded: false,
-            isUserCreateFormVisible: false
+            isUserCreateFormVisible: false,
         };
 
         this.openUserCreateForm = this.openUserCreateForm.bind(this);
@@ -60,7 +61,7 @@ class UserListPage extends React.Component {
                 {isFetching && <p>Loading...</p>}
                 <ModalWrapper title="Create User" isVisible={isUserCreateFormVisible}
                               onClose={this.closeUserCreateForm}>
-                    <UserForm/>
+                    <UserForm createUser={this.props.createUser}/>
                 </ModalWrapper>
                 <UserList users={users} deleteUser={this.props.deleteUser}/>
             </div>
@@ -78,4 +79,4 @@ function mapStateToProps(state) {
 
 UserListPage.propTypes = propTypes;
 
-export default connect(mapStateToProps, {getUsers, deleteUser})(UserListPage);
+export default connect(mapStateToProps, {createUser, getUsers, deleteUser})(UserListPage);

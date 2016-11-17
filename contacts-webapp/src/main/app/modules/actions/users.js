@@ -43,6 +43,35 @@ export const getUsers = () => {
     };
 };
 
+export const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS';
+
+const requestCreateUser = (newUser) => {
+    return {
+        type: CREATE_USER_SUCCESS,
+        newUser
+    };
+};
+
+export const createUser = (newUser) => {
+    const init = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
+        },
+        body: JSON.stringify(newUser)
+    };
+
+    return dispatch => {
+        return fetch(`${config.serverUrl}/api/users`, init)
+            .then(response => {
+                if (response.ok) {
+                    dispatch(requestCreateUser(newUser));
+                }
+            }).catch(err => console.log('Error: ', err));
+    };
+};
+
+
 export const GET_USER_REQUEST = 'GET_USER_REQUEST';
 export const GET_USER_SUCCESS = 'GET_USER_SUCCESS';
 export const GET_USER_FAILURE = 'GET_USER_FAILURE';
