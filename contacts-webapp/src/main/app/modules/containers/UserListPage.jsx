@@ -58,7 +58,7 @@ class UserListPage extends React.Component {
             <div>
                 {error && <div className="alert alert-danger" role="alert">Error fetching users</div>}
                 <button onClick={this.openUserCreateForm} className="btn btn-success">Create User</button>
-                {isFetching && <p>Loading...</p>}
+                {/*{isFetching && <p>Loading...</p>}*/}
                 <ModalWrapper title="Create User" isVisible={isUserCreateFormVisible}
                               onClose={this.closeUserCreateForm}>
                     <UserForm createUser={this.props.createUser}/>
