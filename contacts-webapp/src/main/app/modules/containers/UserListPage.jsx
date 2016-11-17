@@ -1,10 +1,21 @@
 import React from 'react';
-
+import {connect} from 'react-redux';
+import {getUsers} from '../actions/users';
 import UserList from '../components/UserList';
 import ModalWrapper from '../components/common/ModalWrapper';
 import UserForm from '../components/UserForm';
 
-const propTypes = {};
+const propTypes = {
+    usersReducer: React.PropTypes.shape({
+        isFetching: React.PropTypes.bool.isRequired,
+        error: React.PropTypes.bool.isRequired,
+        users: React.PropTypes.arrayOf(React.PropTypes.shape({
+            login: React.PropTypes.string.isRequired,
+            fullName: React.PropTypes.string.isRequired
+        })).isRequired,
+    }),
+    getUsers: React.PropTypes.func.isRequired
+};
 
 class UserListPage extends React.Component {
 
@@ -20,16 +31,8 @@ class UserListPage extends React.Component {
         this.closeUserCreateForm = this.closeUserCreateForm.bind(this);
     }
 
-    componentWillMount() {
-        // TODO: call fetch to load the list of users and set state.users
-        this.setState({
-            users: [
-                {login: 'marat', fullName: 'Марат Гизатуллин'},
-                {login: 'alexander', fullName: 'Александр Комаров'},
-                {login: 'sergey', fullName: 'Сергей Миронов'}
-            ],
-            usersLoaded: true
-        });
+    componentDidMount() {
+        this.props.getUsers();
     }
 
     openUserCreateForm() {
@@ -41,7 +44,8 @@ class UserListPage extends React.Component {
     }
 
     render() {
-        const {users, isUserCreateFormVisible} = this.state;
+        const {isUserCreateFormVisible} = this.state;
+        const {users} = this.props.usersReducer;
 
         return (
             <div>
@@ -57,6 +61,13 @@ class UserListPage extends React.Component {
 
 }
 
+function mapStateToProps(state) {
+    const {usersReducer} = state;
+    return {
+        usersReducer
+    };
+}
+
 UserListPage.propTypes = propTypes;
 
-export default UserListPage;
+export default connect(mapStateToProps, {getUsers})(UserListPage);

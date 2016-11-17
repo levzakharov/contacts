@@ -1,8 +1,6 @@
-const rootReducer = (state, action) => {
-    switch (action.type) {
-        default:
-            return state;
-    }
-};
+import {combineReducers} from 'redux';
+import usersReducer from './usersReducer';
+
+const rootReducer = combineReducers({usersReducer});
 
 export default rootReducer;
