@@ -30,6 +30,7 @@ class UserListPage extends React.Component {
             isUserCreateFormVisible: false,
         };
 
+        this.createUser = this.createUser.bind(this);
         this.openUserCreateForm = this.openUserCreateForm.bind(this);
         this.closeUserCreateForm = this.closeUserCreateForm.bind(this);
     }
@@ -41,6 +42,11 @@ class UserListPage extends React.Component {
 
     componentWillUnmount() {
         clearInterval(this.interval);
+    }
+
+    createUser(user) {
+        this.props.createUser(user);
+        this.closeUserCreateForm();
     }
 
     openUserCreateForm() {
@@ -62,7 +68,7 @@ class UserListPage extends React.Component {
                 {/*{isFetching && <p>Loading...</p>}*/}
                 <ModalWrapper title="Create User" isVisible={isUserCreateFormVisible}
                               onClose={this.closeUserCreateForm}>
-                    <UserForm createUser={this.props.createUser}/>
+                    <UserForm createUser={this.createUser}/>
                 </ModalWrapper>
                 <UserList users={users} deleteUser={this.props.deleteUser}/>
             </div>
