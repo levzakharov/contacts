@@ -2,6 +2,7 @@ import {
     GET_USERS_REQUEST, GET_USERS_SUCCESS, GET_USERS_FAILURE,
     CREATE_USER_SUCCESS,
     GET_USER_REQUEST, GET_USER_SUCCESS, GET_USER_FAILURE,
+    UPDATE_USER_SUCCESS,
     DELETE_USER_SUCCESS
 } from '../actions/users';
 
@@ -63,7 +64,13 @@ const usersReducer = (state = initialState(), action) => {
                 error: true
             };
 
-        case (DELETE_USER_SUCCESS):
+        case UPDATE_USER_SUCCESS:
+            return {
+                ...state,
+                user: action.updatedUser
+            };
+
+        case DELETE_USER_SUCCESS:
             return {
                 ...state,
                 users: state.users.filter(user => user.login != action.login)

@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {getUser} from '../actions/users';
+import {getUser, updateUser} from '../actions/users';
 import UserProfile from '../components/UserProfile';
 import ModalWrapper from '../components/common/ModalWrapper';
 import UserUpdateForm from '../components/UserUpdateForm';
@@ -18,7 +18,8 @@ const propTypes = {
             address: React.PropTypes.string.isRequired
         }).isRequired,
     }),
-    getUser: React.PropTypes.func.isRequired
+    getUser: React.PropTypes.func.isRequired,
+    updateUser: React.PropTypes.func.isRequired
 };
 
 class UserViewPage extends React.Component {
@@ -47,7 +48,8 @@ class UserViewPage extends React.Component {
         this.setState({isUserUpdateFormVisible: false});
     }
 
-    updateUser() {
+    updateUser(user) {
+        this.props.updateUser(user);
         this.closeUserUpdateForm();
     }
 
@@ -82,4 +84,4 @@ function mapStateToProps(state) {
 
 UserViewPage.propTypes = propTypes;
 
-export default connect(mapStateToProps, {getUser})(UserViewPage);
+export default connect(mapStateToProps, {getUser, updateUser})(UserViewPage);

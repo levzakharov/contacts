@@ -115,6 +115,35 @@ export const getUser = (login) => {
     };
 };
 
+export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
+
+const requestUpdateUser = (updatedUser) => {
+    return {
+        type: UPDATE_USER_SUCCESS,
+        updatedUser
+    };
+};
+
+export const updateUser = (user) => {
+    const init = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json; charset=UTF-8'
+        },
+        body: JSON.stringify(user)
+    };
+
+    return dispatch => {
+
+        return fetch(`${config.serverUrl}/api/users/${user.login}`, init)
+            .then(response => {
+                if (response.ok) {
+                    dispatch(requestUpdateUser(user));
+                }
+            }).catch(err => console.log('Error: ', err));
+    };
+};
+
 export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
 
 const requestDeleteUser = (login) => {

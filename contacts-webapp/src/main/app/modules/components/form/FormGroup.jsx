@@ -7,7 +7,7 @@ const propTypes = {
     placeholder: React.PropTypes.string,
     value: React.PropTypes.string,
     isDisabled: React.PropTypes.bool,
-    handleChange: React.PropTypes.func.isRequired
+    handleChange: React.PropTypes.func
 };
 
 class FormGroup extends React.Component {
