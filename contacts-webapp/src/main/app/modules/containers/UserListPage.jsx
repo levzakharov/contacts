@@ -50,10 +50,11 @@ class UserListPage extends React.Component {
 
     render() {
         const {isUserCreateFormVisible} = this.state;
-        const {users, isFetching} = this.props.usersReducer;
+        const {isFetching, error, users} = this.props.usersReducer;
 
         return (
             <div>
+                {error && <div className="alert alert-danger" role="alert">Error fetching users</div>}
                 <button onClick={this.openUserCreateForm} className="btn btn-success">Create User</button>
                 {isFetching && <p>Loading...</p>}
                 <ModalWrapper title="Create User" isVisible={isUserCreateFormVisible}
