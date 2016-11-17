@@ -33,7 +33,7 @@ class UserListPage extends React.Component {
 
     componentDidMount() {
         this.props.getUsers();
-        this.interval = setInterval(this.props.getUsers, 1000);
+        this.interval = setInterval(this.props.getUsers, 2000);
     }
 
     componentWillUnmount() {
@@ -50,11 +50,12 @@ class UserListPage extends React.Component {
 
     render() {
         const {isUserCreateFormVisible} = this.state;
-        const {users} = this.props.usersReducer;
+        const {users, isFetching} = this.props.usersReducer;
 
         return (
             <div>
                 <button onClick={this.openUserCreateForm} className="btn btn-success">Create User</button>
+                {isFetching && <p>Loading...</p>}
                 <ModalWrapper title="Create User" isVisible={isUserCreateFormVisible}
                               onClose={this.closeUserCreateForm}>
                     <UserForm/>
