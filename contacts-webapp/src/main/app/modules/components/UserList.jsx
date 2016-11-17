@@ -25,7 +25,7 @@ const UsersList = ({users}) => (
                 <td>
                     <div className="btn-group" role="group">
                         <Link className="btn btn-primary btn-xs"
-                              to={`/users/view/${encodeURIComponent(name)}`}>
+                              to={`/users/view/${encodeURIComponent(login)}`}>
                             <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
                         </Link>
                         <button className="btn btn-warning btn-xs" type="button">
