@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {createUser, getUsers, deleteUser} from '../actions/users';
 import UserList from '../components/UserList';
 import ModalWrapper from '../components/common/ModalWrapper';
-import UserForm from '../components/UserForm';
+import UserCreateForm from '../components/UserCreateForm';
 
 const propTypes = {
     usersReducer: React.PropTypes.shape({
@@ -68,7 +68,7 @@ class UserListPage extends React.Component {
                 {/*{isFetching && <p>Loading...</p>}*/}
                 <ModalWrapper title="Create User" isVisible={isUserCreateFormVisible}
                               onClose={this.closeUserCreateForm}>
-                    <UserForm createUser={this.createUser}/>
+                    <UserCreateForm createUser={this.createUser}/>
                 </ModalWrapper>
                 <UserList users={users} deleteUser={this.props.deleteUser}/>
             </div>

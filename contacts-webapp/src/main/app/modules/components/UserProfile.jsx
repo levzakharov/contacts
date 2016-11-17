@@ -12,7 +12,9 @@ const defaultProps = {};
 
 const UserProfile = ({user: {login, fullName, address}}) => (
     <div>
-        {login} - {fullName} - {address}
+        <h2>{fullName}</h2>
+        <h3>login: {login}</h3>
+        <h3>address: {address}</h3>
     </div>
 );
 

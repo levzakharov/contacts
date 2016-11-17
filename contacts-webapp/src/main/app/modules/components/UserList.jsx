@@ -31,9 +31,6 @@ const UsersList = ({users, deleteUser}) => (
                               to={`/users/view/${encodeURIComponent(login)}`}>
                             <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
                         </Link>
-                        <button className="btn btn-warning btn-xs" type="button">
-                            <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        </button>
                         <button onClick={() => deleteUser(login)} className="btn btn-danger btn-xs" type="button">
                             <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>

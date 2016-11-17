@@ -6,7 +6,7 @@ const propTypes = {
     createUser: React.PropTypes.func.isRequired
 };
 
-class UserForm extends React.Component {
+class UserCreateForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -52,6 +52,6 @@ class UserForm extends React.Component {
     }
 }
 
-UserForm.propTypes = propTypes;
+UserCreateForm.propTypes = propTypes;
 
-export default UserForm;
+export default UserCreateForm;
