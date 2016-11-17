@@ -34,7 +34,7 @@ class UserListPage extends React.Component {
 
     componentDidMount() {
         this.props.getUsers();
-        this.interval = setInterval(this.props.getUsers, 200000);
+        this.interval = setInterval(this.props.getUsers, 2000);
     }
 
     componentWillUnmount() {
