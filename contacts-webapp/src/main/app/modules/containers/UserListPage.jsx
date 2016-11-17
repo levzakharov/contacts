@@ -33,6 +33,11 @@ class UserListPage extends React.Component {
 
     componentDidMount() {
         this.props.getUsers();
+        this.interval = setInterval(this.props.getUsers, 1000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     openUserCreateForm() {
