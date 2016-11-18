@@ -33,7 +33,6 @@ module.exports = {
         loaders: [
             {test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel'},
             {test: /\.css$/, loader: ExtractTextWebpackPlugin.extract('style', 'css')},
-            {test: /\.scss$/, loader: ExtractTextWebpackPlugin.extract('style', 'css!sass')},
             {test: /\.less$/, loader: ExtractTextWebpackPlugin.extract('style', 'css!less')},
             {test: /\.(png|jpg)$/, loader: 'url?limit=8192'}, // inline base64 URLs for <=8k images, direct URLs for the rest
 

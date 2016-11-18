@@ -5,33 +5,33 @@ const propTypes = {
     users: React.PropTypes.arrayOf(React.PropTypes.shape({
         login: React.PropTypes.string.isRequired,
         fullName: React.PropTypes.string.isRequired
-    })).isRequired
+    })).isRequired,
+    deleteUser: React.PropTypes.func.isRequired
 };
 
-const UsersList = ({users}) => (
+const UsersList = ({users, deleteUser}) => (
     <table className="table">
         <thead>
         <tr>
             <th>Login</th>
             <th>Full Name</th>
+            <th>Address</th>
             <th></th>
         </tr>
         </thead>
         <tbody>
-        {users.map(({login, fullName}) => (
+        {users.map(({login, fullName, address}) => (
             <tr key={login}>
                 <td>{login}</td>
                 <td>{fullName}</td>
+                <td>{address}</td>
                 <td>
                     <div className="btn-group" role="group">
                         <Link className="btn btn-primary btn-xs"
-                              to={`/users/view/${encodeURIComponent(name)}`}>
+                              to={`/users/view/${encodeURIComponent(login)}`}>
                             <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
                         </Link>
-                        <button className="btn btn-warning btn-xs" type="button">
-                            <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        </button>
-                        <button className="btn btn-danger btn-xs" type="button">
+                        <button onClick={() => deleteUser(login)} className="btn btn-danger btn-xs" type="button">
                             <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
                     </div>

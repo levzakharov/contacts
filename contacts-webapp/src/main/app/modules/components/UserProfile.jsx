@@ -2,16 +2,19 @@ import React from 'react';
 
 const propTypes = {
     user: React.PropTypes.shape({
-        name: React.PropTypes.string.isRequired,
-        displayName: React.PropTypes.string.isRequired
+        login: React.PropTypes.string.isRequired,
+        fullName: React.PropTypes.string.isRequired,
+        address: React.PropTypes.string.isRequired
     })
 };
 
 const defaultProps = {};
 
-const UserProfile = ({user: {name, displayName}}) => (
+const UserProfile = ({user: {login, fullName, address}}) => (
     <div>
-        {name} - {displayName}
+        <h2>{fullName}</h2>
+        <h3>login: {login}</h3>
+        <h3>address: {address}</h3>
     </div>
 );
 

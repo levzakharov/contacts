@@ -1,10 +1,24 @@
 import React from 'react';
-
+import {connect} from 'react-redux';
+import {createUser, getUsers, deleteUser} from '../actions/users';
 import UserList from '../components/UserList';
 import ModalWrapper from '../components/common/ModalWrapper';
-import UserForm from '../components/UserForm';
+import UserCreateForm from '../components/UserCreateForm';
 
-const propTypes = {};
+const propTypes = {
+    usersReducer: React.PropTypes.shape({
+        isFetching: React.PropTypes.bool.isRequired,
+        error: React.PropTypes.bool.isRequired,
+        users: React.PropTypes.arrayOf(React.PropTypes.shape({
+            login: React.PropTypes.string.isRequired,
+            fullName: React.PropTypes.string.isRequired,
+            address: React.PropTypes.string.isRequired
+        })).isRequired,
+    }),
+    createUser: React.PropTypes.func.isRequired,
+    getUsers: React.PropTypes.func.isRequired,
+    deleteUser: React.PropTypes.func.isRequired
+};
 
 class UserListPage extends React.Component {
 
@@ -13,23 +27,26 @@ class UserListPage extends React.Component {
         this.state = {
             users: [],
             usersLoaded: false,
-            isUserCreateFormVisible: false
+            isUserCreateFormVisible: false,
         };
 
+        this.createUser = this.createUser.bind(this);
         this.openUserCreateForm = this.openUserCreateForm.bind(this);
         this.closeUserCreateForm = this.closeUserCreateForm.bind(this);
     }
 
-    componentWillMount() {
-        // TODO: call fetch to load the list of users and set state.users
-        this.setState({
-            users: [
-                {login: 'marat', fullName: 'Марат Гизатуллин'},
-                {login: 'alexander', fullName: 'Александр Комаров'},
-                {login: 'sergey', fullName: 'Сергей Миронов'}
-            ],
-            usersLoaded: true
-        });
+    componentDidMount() {
+        this.props.getUsers();
+        this.interval = setInterval(this.props.getUsers, 2000);
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.interval);
+    }
+
+    createUser(user) {
+        this.props.createUser(user);
+        this.closeUserCreateForm();
     }
 
     openUserCreateForm() {
@@ -41,22 +58,32 @@ class UserListPage extends React.Component {
     }
 
     render() {
-        const {users, isUserCreateFormVisible} = this.state;
+        const {isUserCreateFormVisible} = this.state;
+        const {error, users} = this.props.usersReducer;
 
         return (
             <div>
+                {error && <div className="alert alert-danger" role="alert">Error fetching users</div>}
                 <button onClick={this.openUserCreateForm} className="btn btn-success">Create User</button>
+                {/*{isFetching && <p>Loading...</p>}*/}
                 <ModalWrapper title="Create User" isVisible={isUserCreateFormVisible}
                               onClose={this.closeUserCreateForm}>
-                    <UserForm/>
+                    <UserCreateForm createUser={this.createUser}/>
                 </ModalWrapper>
-                <UserList users={users}/>
+                <UserList users={users} deleteUser={this.props.deleteUser}/>
             </div>
         );
     }
 
 }
 
+function mapStateToProps(state) {
+    const {usersReducer} = state;
+    return {
+        usersReducer
+    };
+}
+
 UserListPage.propTypes = propTypes;
 
-export default UserListPage;
+export default connect(mapStateToProps, {createUser, getUsers, deleteUser})(UserListPage);
