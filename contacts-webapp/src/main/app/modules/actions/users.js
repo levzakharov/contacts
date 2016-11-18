@@ -24,8 +24,12 @@ function usersError() {
 }
 
 export const getUsers = () => {
+    const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsZXYiLCJpZCI6IjEiLCJpYXQiOjE0Nzk0NTA4NDh9.qZM_PA--lqjv9-ZAjXAqrE0QI1N0j5mdqp1OqxNtG5v0ucH_qq25bvVhVDcf6RBVQcV2ZGex6hPTVb61Mv9vQA';
     const init = {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
     };
 
     return dispatch => {
