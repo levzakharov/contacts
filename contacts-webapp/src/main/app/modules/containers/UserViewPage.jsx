@@ -63,7 +63,6 @@ class UserViewPage extends React.Component {
 
         return (
             <div>
-                <h3>Пользователь {this.props.params.login}</h3>
                 <button onClick={this.openUserUpdateForm} className="btn btn-warning" type="button">
                     Edit <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
                 </button>
