@@ -6,6 +6,9 @@ import ModalWrapper from '../components/common/ModalWrapper';
 import UserCreateForm from '../components/UserCreateForm';
 
 const propTypes = {
+    authentication: React.PropTypes.shape({
+        token: React.PropTypes.string.isRequired
+    }),
     usersReducer: React.PropTypes.shape({
         isFetching: React.PropTypes.bool.isRequired,
         error: React.PropTypes.bool.isRequired,
@@ -36,8 +39,9 @@ class UserListPage extends React.Component {
     }
 
     componentDidMount() {
-        this.props.getUsers();
-        this.interval = setInterval(this.props.getUsers, 2000);
+        const {token} = this.props.authentication;
+        this.props.getUsers(token);
+        this.interval = setInterval(() => this.props.getUsers(token), 2000);
     }
 
     componentWillUnmount() {
@@ -45,7 +49,8 @@ class UserListPage extends React.Component {
     }
 
     createUser(user) {
-        this.props.createUser(user);
+        const {token} = this.props.authentication;
+        this.props.createUser(token, user);
         this.closeUserCreateForm();
     }
 
@@ -59,6 +64,7 @@ class UserListPage extends React.Component {
 
     render() {
         const {isUserCreateFormVisible} = this.state;
+        const {token} = this.props.authentication;
         const {error, users} = this.props.usersReducer;
 
         return (
@@ -70,7 +76,7 @@ class UserListPage extends React.Component {
                               onClose={this.closeUserCreateForm}>
                     <UserCreateForm createUser={this.createUser}/>
                 </ModalWrapper>
-                <UserList users={users} deleteUser={this.props.deleteUser}/>
+                <UserList token={token} users={users} deleteUser={this.props.deleteUser}/>
             </div>
         );
     }
@@ -78,8 +84,9 @@ class UserListPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const {usersReducer} = state;
+    const {authentication, usersReducer} = state;
     return {
+        authentication,
         usersReducer
     };
 }

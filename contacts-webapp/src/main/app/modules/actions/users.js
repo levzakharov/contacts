@@ -23,12 +23,11 @@ function usersError() {
     };
 }
 
-export const getUsers = () => {
-    const token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsZXYiLCJpZCI6IjEiLCJpYXQiOjE0Nzk0NTA4NDh9.qZM_PA--lqjv9-ZAjXAqrE0QI1N0j5mdqp1OqxNtG5v0ucH_qq25bvVhVDcf6RBVQcV2ZGex6hPTVb61Mv9vQA';
+export const getUsers = (token) => {
     const init = {
         method: 'GET',
         headers: {
-            'Authorization': `Bearer ${token}`
+            Authorization: `Bearer ${token}`
         }
     };
 
@@ -56,11 +55,12 @@ const requestCreateUser = (newUser) => {
     };
 };
 
-export const createUser = (newUser) => {
+export const createUser = (token, newUser) => {
     const init = {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json; charset=UTF-8'
+            'Content-Type': 'application/json; charset=UTF-8',
+            Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(newUser)
     };
@@ -99,9 +99,12 @@ function userError() {
     };
 }
 
-export const getUser = (login) => {
+export const getUser = (token, login) => {
     const init = {
-        method: 'GET'
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
     };
 
     return dispatch => {
@@ -128,11 +131,12 @@ const requestUpdateUser = (updatedUser) => {
     };
 };
 
-export const updateUser = (user) => {
+export const updateUser = (token, user) => {
     const init = {
         method: 'PUT',
         headers: {
-            'Content-Type': 'application/json; charset=UTF-8'
+            'Content-Type': 'application/json; charset=UTF-8',
+            Authorization: `Bearer ${token}`
         },
         body: JSON.stringify(user)
     };
@@ -157,9 +161,12 @@ const requestDeleteUser = (login) => {
     };
 };
 
-export const deleteUser = (login) => {
+export const deleteUser = (token, login) => {
     const init = {
-        method: 'DELETE'
+        method: 'DELETE',
+        headers: {
+            Authorization: `Bearer ${token}`
+        },
     };
 
     return dispatch => {

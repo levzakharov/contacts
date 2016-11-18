@@ -6,10 +6,11 @@ const propTypes = {
         login: React.PropTypes.string.isRequired,
         fullName: React.PropTypes.string.isRequired
     })).isRequired,
+    token: React.PropTypes.string.isRequired,
     deleteUser: React.PropTypes.func.isRequired
 };
 
-const UsersList = ({users, deleteUser}) => (
+const UsersList = ({users, token, deleteUser}) => (
     <table className="table">
         <thead>
         <tr>
@@ -31,7 +32,7 @@ const UsersList = ({users, deleteUser}) => (
                               to={`/users/view/${encodeURIComponent(login)}`}>
                             <span className="glyphicon glyphicon-user" aria-hidden="true"></span>
                         </Link>
-                        <button onClick={() => deleteUser(login)} className="btn btn-danger btn-xs" type="button">
+                        <button onClick={() => deleteUser(token, login)} className="btn btn-danger btn-xs" type="button">
                             <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>
                         </button>
                     </div>

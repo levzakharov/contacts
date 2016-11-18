@@ -9,6 +9,9 @@ const propTypes = {
     params: React.PropTypes.shape({
         login: React.PropTypes.string.isRequired
     }).isRequired,
+    authentication: React.PropTypes.shape({
+        token: React.PropTypes.string.isRequired
+    }),
     usersReducer: React.PropTypes.shape({
         isFetching: React.PropTypes.bool.isRequired,
         error: React.PropTypes.bool.isRequired,
@@ -37,7 +40,8 @@ class UserViewPage extends React.Component {
 
     componentDidMount() {
         const login = this.props.params.login;
-        this.props.getUser(login);
+        const {token} = this.props.authentication;
+        this.props.getUser(token, login);
     }
 
     openUserUpdateForm() {
@@ -49,7 +53,7 @@ class UserViewPage extends React.Component {
     }
 
     updateUser(user) {
-        this.props.updateUser(user);
+        this.props.updateUser(this.props.authentication.token, user);
         this.closeUserUpdateForm();
     }
 
@@ -76,8 +80,9 @@ class UserViewPage extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const {usersReducer} = state;
+    const {authentication, usersReducer} = state;
     return {
+        authentication,
         usersReducer
     };
 }
