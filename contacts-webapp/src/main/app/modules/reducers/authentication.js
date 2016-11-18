@@ -1,4 +1,4 @@
-import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE} from '../actions/authentication';
+import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS} from '../actions/authentication';
 
 const initialState = () => {
     const token = '';
@@ -32,6 +32,13 @@ const authentication = (state = initialState(), action) => {
                 isFetching: false,
                 isAuthenticated: false,
                 errorMessage: action.message
+            };
+        case (LOGOUT_SUCCESS):
+            return {
+                ...state,
+                isFetching: false,
+                isAuthenticated: false,
+                token: null
             };
         default:
             return state;

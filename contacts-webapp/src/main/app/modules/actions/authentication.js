@@ -45,3 +45,18 @@ export function login(username, password) {
             }).catch(err => console.log('Error: ', err));
     };
 }
+
+export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS';
+
+function receiveLogout() {
+    return {
+        type: LOGOUT_SUCCESS
+    };
+}
+
+export function logout() {
+    return (dispatch) => {
+        dispatch(receiveLogout());
+        browserHistory.push('/login');
+    };
+}
