@@ -19,7 +19,7 @@ const propTypes = {
             login: React.PropTypes.string.isRequired,
             fullName: React.PropTypes.string.isRequired,
             address: React.PropTypes.string.isRequired
-        }).isRequired,
+        }),
     }),
     getUser: React.PropTypes.func.isRequired,
     updateUser: React.PropTypes.func.isRequired
