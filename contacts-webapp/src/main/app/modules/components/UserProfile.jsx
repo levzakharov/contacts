@@ -8,8 +8,6 @@ const propTypes = {
     })
 };
 
-const defaultProps = {};
-
 const UserProfile = ({user: {login, fullName, address}}) => (
     <div>
         <h2>Full Name: {fullName}</h2>
@@ -19,6 +17,5 @@ const UserProfile = ({user: {login, fullName, address}}) => (
 );
 
 UserProfile.propTypes = propTypes;
-UserProfile.defaultProps = defaultProps;
 
 export default UserProfile;
