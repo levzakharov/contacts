@@ -39,6 +39,7 @@ export function login(username, password) {
                 if (!response.ok) {
                     dispatch(loginError(token));
                 } else {
+                    localStorage.setItem('token', token);
                     dispatch(receiveLogin(token));
                     browserHistory.push('/');
                 }
@@ -56,6 +57,7 @@ function receiveLogout() {
 
 export function logout() {
     return (dispatch) => {
+        localStorage.removeItem('token');
         dispatch(receiveLogout());
         browserHistory.push('/login');
     };

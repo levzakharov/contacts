@@ -1,7 +1,7 @@
 import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS} from '../actions/authentication';
 
 const initialState = () => {
-    const token = '';
+    const token = localStorage.getItem('token');
     return {
         isFetching: false,
         isAuthenticated: token ? true : false,
